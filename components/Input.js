@@ -25,7 +25,7 @@ function Input() {
   const filepickerref = useRef(null);
   const [showemojis, setShowemojis] = useState(false);
   const { data: session } = useSession();
-
+  console.log(session);
   const addimagetopost = (e) => {
     const reader = new FileReader();
 

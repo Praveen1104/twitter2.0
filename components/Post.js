@@ -19,6 +19,7 @@ import {
 } from "firebase/firestore";
 import { db } from "@/firebase";
 function Post({ post, id, postpage }) {
+  console.log(post)
   const { data: session } = useSession();
   const [isopen, setisopen] = useRecoilState(modalState);
   const [postid, setpostid] = useRecoilState(postIdState);
@@ -89,7 +90,7 @@ function Post({ post, id, postpage }) {
               <span
                 className={`text-sm sm:text-[15px] ${!postpage && "ml-1.5"}`}
               >
-                @{post.tag}
+                 @{post?.tag}
               </span>
             </div>
             .{" "}

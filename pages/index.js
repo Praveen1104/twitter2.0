@@ -7,13 +7,15 @@ import { useRecoilState } from "recoil";
 import { modalState } from "@/atoms/modalatom";
 import Modal from "@/components/Modal";
 import Widget from "@/components/Widget";
+import { trendingresults } from "../helpers/Static";
+import { followresults } from "../helpers/Static";
 
-export default function Home({ trendingresults, followresults, providers }) {
+export default function Home({ providers }) {
   const { data: session } = useSession();
   const [isopen, setisopen] = useRecoilState(modalState);
   if (!session) return <Login providers={providers} />;
   return (
-    <div className="">
+    <div className="overflow-y-scroll scrollbar-hide">
       <Head>
         <title>Twitter2.0</title>
       </Head>
@@ -31,19 +33,19 @@ export default function Home({ trendingresults, followresults, providers }) {
 }
 
 export async function getServerSideProps(context) {
-  const trendingresults = await fetch("https://www.jsonkeeper.com/b/NKEV").then(
+  /* const trendingresults = await fetch("https://www.jsonkeeper.com/b/NKEV").then(
     (res) => res.json()
   );
   const followresults = await fetch("https://www.jsonkeeper.com/b/WWMJ").then(
     (res) => res.json()
-  );
+  ); */
   const providers = await getProviders();
   const session = await getSession(context);
 
   return {
     props: {
-      trendingresults,
-      followresults,
+      //trendingresults,
+      //followresults,
       providers,
       session,
     },

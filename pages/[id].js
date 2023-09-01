@@ -19,7 +19,9 @@ import { useRecoilState } from "recoil";
 import { BsArrowLeftShort } from "react-icons/bs";
 import Comment from "@/components/Comment";
 import Widget from "@/components/Widget";
-function Postpage({ trendingresults, followresults, providers }) {
+import { trendingresults } from "@/helpers/Static";
+import { followresults } from "@/helpers/Static";
+function Postpage({ providers }) {
   const { data: session } = useSession();
   const [isopen, setisopen] = useRecoilState(modalState);
   const [post, setpost] = useState();
@@ -92,20 +94,20 @@ function Postpage({ trendingresults, followresults, providers }) {
 export default Postpage;
 
 export async function getServerSideProps(context) {
-  const trendingresults = await fetch("https://jsonkeeper.com/b/NKEV").then(
+  /*const trendingresults = await fetch("https://jsonkeeper.com/b/NKEV").then(
     (res) => res.json()
   );
   const followresults = await fetch("https://jsonkeeper.com/b/WWMJ").then(
     (res) => res.json()
-  );
+  );*/
 
   const providers = await getProviders();
   const session = await getSession(context);
 
   return {
     props: {
-      trendingresults,
-      followresults,
+      //trendingresults,
+      //followresults,
       providers,
       session,
     },
